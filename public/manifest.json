@@ -1,0 +1,15 @@
+{
+  "short_name": "Blockchain",
+  "name": "Cyber Quest Blockchain 2018",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "57x57",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
