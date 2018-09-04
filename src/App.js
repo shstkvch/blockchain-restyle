@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, Nav, Container, Row, Col, Button } from "reactstra
 import logo from "./cyber-quest-white.png";
 import "./App.css";
 
-const api = "http://api.blockchain.bengalloway.io";
+const api = "https://api.blockchain.bengalloway.io";
 
 var sha256 = function sha256(ascii) {
 	function rightRotate(value, amount) {
