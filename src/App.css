@@ -1,34 +1,58 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-root {
-  height: 100vh;
+	height: 100vh;
 }
 
 .App-logo {
-  height: 80px;
+	height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 .heading {
-  font-family: "Press Start 2P", cursive;
+	font-family: "Press Start 2P", cursive;
 }
 
-footer {
-  height: 150px;
+.header {
+	height: 10vh;
+}
+
+.main-content {
+	height: 80vh;
+}
+
+.footer {
+	height: 10vh;
+}
+
+.column-height {
+	height: 80vh;
+}
+
+.panel-height {
+	height: 65vh;
+}
+
+.column-overflow {
+	overflow: auto;
+}
+
+.mono-font {
+	font-family: monospace;
 }

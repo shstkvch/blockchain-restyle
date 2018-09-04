@@ -12,7 +12,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
-    "reactstrap": "^6.4.0"
+    "reactstrap": "^6.4.0",
+    "simple-sha256": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
