@@ -104,6 +104,7 @@ class App extends Component {
             });
     }
     send() {
+        if (!(Number(this.state.sendAmount) > 0)) return false;
         fetch(`${api}/transactions/new`, {
             method: "POST",
             body: JSON.stringify({
