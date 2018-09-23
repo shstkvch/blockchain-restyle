@@ -14,11 +14,14 @@ import {
     Alert,
 } from "reactstrap";
 import Loader from "./Loader";
+import AnimateBalance from "./AnimateBalance";
 import sha256 from "./sha256";
 import logo from "./cyber-quest-white.png";
 import "./App.css";
 
 const api = "https://api.blockchain.bengalloway.io";
+const mineDelay = 1; //seconds
+const usernameRegexp = /^[\w]+$/;
 
 class App extends Component {
     constructor(props) {
@@ -36,7 +39,6 @@ class App extends Component {
             usernameErrorMessage: "",
             nodes: [],
             balance: 0,
-            previousBalance: 0,
             chain: { chain: [] },
             transactions: { unconfirmed_transactions: [] },
             mineStatus: null,
@@ -70,13 +72,12 @@ class App extends Component {
         );
         const debitAmount = debitTransactions.reduce((accumulator, transaction) => accumulator + transaction.amount, 0);
         const balance = creditAmount - debitAmount;
-        this.setState({ previousBalance: this.state.balance, balance });
+        this.setState({ balance });
     }
 
     setUser() {
         const username = document.getElementById("userEntry").value;
-        const re = /^[\w]+$/;
-        if (!re.test(username)) {
+        if (!usernameRegexp.test(username)) {
             this.setState({ usernameError: true, usernameErrorMessage: "Letters and numbers only - no spaces" });
             return false;
         }
@@ -155,7 +156,7 @@ class App extends Component {
             },
         })
             .then((response) => response.json())
-            .then((response) => new Promise((resolve) => setTimeout(() => resolve(response), 10000))) // Manual 10-second delay
+            .then((response) => new Promise((resolve) => setTimeout(() => resolve(response), 1000 * mineDelay))) // Manual delay
             .then((mineStatus) => this.setState({ mineStatus, mineRequestInFlight: false }))
             .then(() => {
                 this.fetchChain();
@@ -174,6 +175,10 @@ class App extends Component {
         }
         if (this.state.sendRecipient === "") {
             this.setState({ sendError: true, sendStatus: "Who do you want to send these coins to?" });
+            return false;
+        }
+        if (!usernameRegexp.test(this.state.sendRecipient)) {
+            this.setState({ sendError: true, sendStatus: "This is not a valid name to send coins to" });
             return false;
         }
         if (this.state.sendRecipient === this.state.user) {
@@ -232,7 +237,7 @@ class App extends Component {
                         &nbsp;CyberCoin
                     </NavbarBrand>
                     <Nav className="ml-auto pr-3 text-white d-flex align-items-center" navbar>
-                        <span className="heading">Coins:</span> {this.state.balance}
+                        <span className="heading">Coins:</span> <AnimateBalance value={this.state.balance} />
                     </Nav>
                     <Nav className="ml-auto pr-3 text-white" navbar>
                         <span className="heading">User:</span> {this.state.user}
