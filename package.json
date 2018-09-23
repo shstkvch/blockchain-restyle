@@ -12,6 +12,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
+    "react-spinners": "^0.4.5",
+    "react-spring": "^5.8.0",
     "reactstrap": "^6.4.0"
   },
   "scripts": {
