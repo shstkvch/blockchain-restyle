@@ -18,6 +18,7 @@ import AnimateBalance from "./AnimateBalance";
 import sha256 from "./sha256";
 import logo from "./cyber-quest-white.png";
 import "./App.css";
+require( './cyberquest' );
 
 const api = "https://api.blockchain.bengalloway.io";
 const mineDelay = 1; //seconds
@@ -207,6 +208,7 @@ class App extends Component {
     render() {
         return (
             <div className="App-root d-flex flex-column justify-content-between">
+                <div class="cyberquest-background"></div>
                 <Modal isOpen={this.state.user === null} autoFocus={true} keyboard={false} backdrop="static">
                     <ModalHeader className="heading">Welcome to CyberCoin</ModalHeader>
                     <ModalBody>
@@ -237,17 +239,17 @@ class App extends Component {
                         &nbsp;CyberCoin
                     </NavbarBrand>
                     <Nav className="ml-auto pr-3 text-white d-flex align-items-center" navbar>
-                        <span className="heading">Coins:</span> <AnimateBalance value={this.state.balance} />
+                        <span className="heading coins-heading">Coins:</span> <span className="coins-value"><AnimateBalance value={this.state.balance} /></span>
                     </Nav>
                     <Nav className="ml-auto pr-3 text-white" navbar>
-                        <span className="heading">User:</span> {this.state.user}
+                        <span className="heading user-heading">User:</span> <span className="user-value">{this.state.user}</span>
                     </Nav>
                 </Navbar>
                 <div className="main-content flex-grow-1 flex-shrink-0">
                     <Container fluid>
                         <Row>
                             <Col id="chain-display" sm="7" className="column-height py-3">
-                                <Container fluid>
+                                <Container fluid className="well well-success">
                                     <Row>
                                         <Col sm="12" className="px-1 column-chrome">
                                             <h3 className="heading">Chain</h3>
@@ -257,7 +259,7 @@ class App extends Component {
                                         <Col
                                             id="chain-pre"
                                             sm="12"
-                                            className="panel-height column-overflow border px-0"
+                                            className="panel-height column-overflow"
                                         >
                                             <pre className="my-0">
                                                 {JSON.stringify(this.state.chain.chain, null, 2)}
@@ -363,7 +365,7 @@ class App extends Component {
                                 </Alert>
                                 <hr />
                                 <h4>Unconfirmed Transactions</h4>
-                                <pre>{JSON.stringify(this.state.transactions.unconfirmed_transactions, null, 2)}</pre>
+                                <pre className="well">{JSON.stringify(this.state.transactions.unconfirmed_transactions, null, 2)}</pre>
                                 {this.state.transactionRequestInFlight ? (
                                     <Loader />
                                 ) : (
